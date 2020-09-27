@@ -1,0 +1,9 @@
+
+ # metadata:
+name: nexus
+replica: !!int "1"
+imagename: eu.gcr.io/aliz-hw-adamsz/sonatype3
+containerPorthttp: !!int "8081"
+containerPortdocker: !!int "5000"
+  #ports:
+#containerPorthttp: 8081

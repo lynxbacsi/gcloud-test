@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Values.name }}"
+spec:
+  replicas: {{ int .Values.replica }}
+  selector:
+    matchLabels:
+      app: "{{ .Values.name }}"
+  template:
+    metadata:
+      labels:
+        app: "{{ .Values.name }}"
+    spec:
+      containers:
+      - image: "{{ .Values.imagename }}"
+        imagePullPolicy: Always
+        name: "{{ .Values.name }}"
+        ports:
+        - containerPort: {{ int .Values.containerPorthttp }}
+        - containerPort: {{ int .Values.containerPortdocker }}
+        volumeMounts:
+          - mountPath: /nexus-data
+            name: nexus-data-volume
+      volumes:
+        - name: nexus-data-volume
+          persistentVolumeClaim:
+            claimName: nexus-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ .Values.name }}"
+  namespace: "{{ .Values.namespace }}"
+spec:
+  ports:
+  - port: 80
+    targetPort: {{ int .Values.containerPorthttp }}
+    protocol: TCP
+    name: http
+  - port: {{ int .Values.containerPortdocker }}
+    targetPort: {{ int .Values.containerPortdocker }}
+    protocol: TCP
+    name: docker 
+  selector:
+    app: nexus

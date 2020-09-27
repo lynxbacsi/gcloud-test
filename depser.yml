@@ -1,0 +1,44 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nexus
+  namespace: nexus
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nexus
+    spec:
+      containers:
+      - image: eu.gcr.io/aliz-hw-adamsz/sonatype3
+        imagePullPolicy: Always
+        name: nexus
+        ports:
+        - containerPort: 8081
+        - containerPort: 5000
+        volumeMounts:
+          - mountPath: /nexus-data
+            name: nexus-data-volume
+      volumes:
+        - name: nexus-data-volume
+          persistentVolumeClaim:
+            claimName: nexus-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nexus-service
+  namespace: nexus
+spec:
+  ports:
+  - port: 80
+    targetPort: 8081
+    protocol: TCP
+    name: http
+  - port: 5000
+    targetPort: 5000
+    protocol: TCP
+    name: docker 
+  selector:
+    app: nexus

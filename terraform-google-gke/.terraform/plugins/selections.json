@@ -1,0 +1,30 @@
+{
+  "registry.terraform.io/hashicorp/google": {
+    "hash": "h1:lwz3GnwyGi6aXOqRHyzIQxaa4behA0v/je7mc5rBJx4=",
+    "version": "2.9.1"
+  },
+  "registry.terraform.io/hashicorp/google-beta": {
+    "hash": "h1:C00pIM3bvhO//DpLP0DFijHUkXyqGxCwpoS2gmnZ6vQ=",
+    "version": "2.9.1"
+  },
+  "registry.terraform.io/hashicorp/helm": {
+    "hash": "h1:mM8EWp4t42WGEqwpVElYq4zYqe0bxsOWnWuOHS39rBo=",
+    "version": "1.3.0"
+  },
+  "registry.terraform.io/hashicorp/kubernetes": {
+    "hash": "h1:PRt9FgsimPmCR+hjG0HRG1ZvZg2DcsRTmrltzQy3mrI=",
+    "version": "1.13.2"
+  },
+  "registry.terraform.io/hashicorp/null": {
+    "hash": "h1:l0/ASa/TB1exgqdi33sOkFakJL2zAQBu+q5LgO5/SxI=",
+    "version": "2.1.2"
+  },
+  "registry.terraform.io/hashicorp/random": {
+    "hash": "h1:5JJ8VauQAalQG7+TJBlN1QNkDIUOAR1OJAgQeU93JPk=",
+    "version": "2.3.0"
+  },
+  "registry.terraform.io/hashicorp/template": {
+    "hash": "h1:a61DkglpoCGihJWQDBO0wJovPKXm9K6GLau2l+Q6EdA=",
+    "version": "2.1.2"
+  }
+}

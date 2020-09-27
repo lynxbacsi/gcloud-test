@@ -1,0 +1,19 @@
+kubectl apply -f pvc-claim.yaml 
+
+helm install ./nexuschart --generate-name     
+
+kubectl expose deployment nexus --namespace nexus-helm --type=LoadBalancer --name=my-service 
+
+kubectl expose deployment nexus --type=LoadBalancer --name=my-service 
+
+gcloud iam service-accounts create aliz-hw-adamsz-account
+
+gcloud projects add-iam-policy-binding aliz-hw-adamsz --member serviceAccount:<service_account_name>@aliz-hw-adamsz.iam.gserviceaccount.com --role roles/container.admin
+gcloud projects add-iam-policy-binding aliz-hw-adamsz --member serviceAccount:<service_account_name>@aliz-hw-adamsz.iam.gserviceaccount.com --role roles/compute.admin
+gcloud projects add-iam-policy-binding aliz-hw-adamsz --member serviceAccount:<service_account_name>@aliz-hw-adamsz.iam.gserviceaccount.com --role roles/iam.serviceAccountUser
+gcloud projects add-iam-policy-binding aliz-hw-adamsz --member serviceAccount:<service_account_name>@aliz-hw-adamsz.iam.gserviceaccount.com --role roles/resourcemanager.projectIamAdmin
+
+ #create bucket
+gsutil mb -p aliz-hw-adamsz -c regional -l europe-west4 gs://aliz-hw-adamsz-bucket/
+
+gsutil versioning set on gs://aliz-hw-adamsz-bucket/

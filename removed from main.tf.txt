@@ -1,0 +1,37 @@
+
+resource "kubernetes_persistent_volume" "example" {
+  metadata {
+    name = "nexus-pv"
+  }
+  spec {
+    capacity = {
+      storage = "10Gi"
+    }
+    access_modes = ["ReadWriteMany"]
+    persistent_volume_source {                                                        
+      gce_persistent_disk {                                                           
+        pd_name = "pd-zero"          
+        fs_type = "ext4"                                                              
+      }   
+    }
+  }
+}
+
+resource "google_storage_bucket" "example" {
+
+  name          = "personalbucket"
+  project       = "aliz-hw-adamsz"
+  location      = "EU"
+  storage_class = "MULTI_REGIONAL"
+ 
+  force_destroy = "false"
+}
+
+resource "google_storage_bucket" "static-site" {
+  name          = "image-store.com"
+  project       = "aliz-hw-adamsz"
+  location      = "EU"
+  force_destroy = true
+
+  uniform_bucket_level_access = true
+}
